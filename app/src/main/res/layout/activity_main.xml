@@ -27,7 +27,7 @@
         tools:text="Enter in a number" />
 
     <Button
-        android:id="@+id/btnText"
+        android:id="@+id/ansBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Multiply!"
