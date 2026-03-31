@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -19,14 +20,20 @@ class MainActivity : AppCompatActivity() {
         //added variable for multiplication button
         val multiplyBtn = findViewById<Button>(R.id.ansBtn)
 
+        //added a variable for the user's input
+        val numInput = findViewById<EditText>(R.id.numTxt)
+
         //added a listener to get notified when the listener is clicked
         multiplyBtn.setOnClickListener {
 
            //made a variable to function the switch between pages (Activities)
             val intent = Intent(this, multiplicationTable::class.java)
 
+            intent.putExtra("tableNumber", numInput.text.toString())
             //this closes the current page and opens the new page (Multiplication Table)
             startActivity(intent)
+
+
         }
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
