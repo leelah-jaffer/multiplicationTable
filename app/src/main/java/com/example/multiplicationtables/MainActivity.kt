@@ -17,28 +17,24 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
-        //added variable for multiplication button
-        val multiplyBtn = findViewById<Button>(R.id.ansBtn)
+        class MainActivity : AppCompatActivity() {
+            override fun onCreate(savedInstanceState: Bundle?) {
+                super.onCreate(savedInstanceState)
+                setContentView(R.layout.activity_main)
 
-        //added a variable for the user's input
-        val numInput = findViewById<EditText>(R.id.numTxt)
+                val multiplyButton = findViewById<Button>(R.id.multiplyButton)
+                val tableNumberEditText = findViewById<EditText>(R.id.tableNumberEditText)
 
-        //added a listener to get notified when the listener is clicked
-        multiplyBtn.setOnClickListener {
+                multiplyButton.setOnClickListener {
 
-           //made a variable to function the switch between pages (Activities)
-            val intent = Intent(this, multiplicationTable::class.java)
+                    // create the explicit intent
+                    val intent = Intent(this, MultiplicationTable::class.java)
 
-            intent.putExtra("tableNumber", numInput.text.toString())
-            //this closes the current page and opens the new page (Multiplication Table)
-            startActivity(intent)
+                    // add the table number to the intent
+                    intent.putExtra("tableNumber", tableNumberEditText.text.toString())
 
-
+                    // start the activity
+                    startActivity(intent)
+                }
+            }
         }
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-    }
-}
