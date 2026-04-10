@@ -15,11 +15,31 @@ class multiplicationTable : AppCompatActivity() {
 
         // recieving intent from main activity
         val bundle: Bundle? = intent.extras
-        val tableString = bundle?.getString("tableNumber")
-        val tableNumber = tableString?.toInt()
+        val tableString: String? = bundle?.getString("tableNumber")
+
+        val tableNumber = tableString!!.toInt()
 
         //assigned variable to text view
         val multiplyTbl = findViewById<TextView>(R.id.multiplyTableTxt)
+
+        var tableDisplay: String = "$tableNumber x table\n\n"
+        counter
+        var counter = 1
+
+        multiplyTbl.text = tableDisplay
+
+        while (count <= 10) {
+            val answer= tableNumber + count
+
+            if (count == 3) {
+                count++
+                continue
+            }
+        }
+    }
+}
+
+
 
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
