@@ -2,50 +2,36 @@ package com.example.multiplicationtables
 
 import android.os.Bundle
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class multiplicationTable : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_multiplication_table)
 
-        // recieving intent from main activity
+        // get the table number from the bundle
         val bundle: Bundle? = intent.extras
         val tableString: String? = bundle?.getString("tableNumber")
 
+        // convert to a non-nullable integer
         val tableNumber = tableString!!.toInt()
 
-        //assigned variable to text view
-        val multiplyTbl = findViewById<TextView>(R.id.multiplyTableTxt)
+        // find the TextView
+        val multiplicationTable = findViewById<TextView>(R.id.multiplicationTableTextView)
 
+        // start with the heading and two new lines
         var tableDisplay: String = "$tableNumber x table\n\n"
-        counter
+
+        // loop 20 times and keep adding to the string
         var counter = 1
-
-        multiplyTbl.text = tableDisplay
-
-        while (count <= 10) {
-            val answer= tableNumber + count
-
-            if (count == 3) {
-                count++
-                continue
-            }
+        while (counter <= 20) {
+            val answer = tableNumber * counter
+            tableDisplay += "$tableNumber x $counter = ${answer}\n"
+            counter++
         }
-    }
-}
 
-
-
-
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        // set the string onto the display
+        multiplicationTable.text = tableDisplay
     }
 }
